@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Translator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 0vw 50vw 50vw 0vw;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .left-column {
+      display: grid;
+      background-color: #ffffff;
+      place-items: center;
+      grid-column: 2;
+      border: 1px solid #ccc;
+    }
+
+    .right-column {
+      padding: 20px;
+      background-color: #f0f0f0;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      grid-column: 3;
+      border: 1px solid #ccc;
+    }
+
+    .screenTitle{
+      text-align: center;
+    }
+
+    .labelText{
+      text-align: center;
+    }
+
+    #chatWindow {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 65vh;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 70%;
+      clear: both;
+    }
+
+    .user1 {
+      background-color: #d1e7dd;
+      float: right;
+      text-align: right;
+    }
+
+    .user2 {
+      background-color: #f8d7da;
+      float: left;
+      text-align: left;
+    }
+
+#controls {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+#messageInput {
+  height: 40px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#sendButton {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(179, 214, 243);
+  color: rgb(0, 0, 0);
+}
+
+#recordBtn {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(255, 202, 202);
+  color: rgb(0, 0, 0);
+}
+
+#recordBtn:disabled{
+  background-color: #989898;
+}
+
+#stopBtn {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(224, 255, 233);
+  color: rgb(0, 0, 0);
+}
+
+#stopBtn:disabled{
+  background-color: #989898;
+}
+
+
+#recordButtons {
+  padding: 0 20px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+#audioComponent {
+  padding: 0 20px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  align-items: center;
+  
+}
+
+.optionsMenu{
+  padding: 0 20px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 10px;
+  align-items: center;
+  
+}
+
+
+.optionBtn {
+  height: 60px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(224, 238, 255);
+  color: rgb(0, 0, 0);
+}
+
+
+.sideControls {
+  padding: 0 20px;
+  margin-top: 10px;
+  width: 40vw;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+
+
+.dropdownArray {
+  padding: 0 20px;
+  margin-top: 10px;
+  width: 40vw;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+
+
+
+#audioPlayer{
+  height: 50px;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    
+    <div class="left-column">
+
+      <div class="sideControls">
+        <!--<p id="titleText">(Debug) Pathway title: </p>
+        <p id="justificationText">(Debug) justification:</p> -->
+        <h2 class="screenTitle">Caregiver Options</h2>
+        <div class="dropdownArray">
+            <p class="labelText">Input:</p>
+              <select id="dropDownLangIn">
+                <option value="pt-BR" selected>Portuguese (Brazillian)</option>
+                <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
+                <option value="en-CA">English</option>
+              </select>
+              <p class="labelText">Output:</p>
+              <select id="dropDownLangOut">
+                <option value="pt-BR">Portuguese (Brazillian)</option>
+                <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
+                <option value="en-CA" selected>English</option>
+              </select>              
+        </div>
+        <p id="PromptStatus" class="labelText"> </hp>
+        <div class="optionsMenu">
+          <button class="optionBtn" id="buttonOption1"></button>
+          <button class="optionBtn" id="buttonOption2"></button>
+          <button class="optionBtn" id="buttonOption3"></button>
+        </div>
+        <div id="recordButtons">
+        <button id="recordBtn">Start Recording 🔴</button>
+        <button id="stopBtn">Stop Recording ⬛</button>    
+        </div>
+        <div id="audioComponent">
+          <audio id="audioPlayer" controls></audio>
+          <select id="dropDownSpeed">
+                <option value="1">Speed: 1x</option>
+                <option value="0.75">Speed: 0.75x</option>
+                <option value="0.6" selected>Speed: 0.6x</option>
+                <option value="0.5" >Speed: 0.5x</option>
+                <option value="0.25">Speed: 0.25x</option>
+           </select>   
+        </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+      <h2 class="screenTitle">AI Translated Conversation</h2>
+      <div id="chatWindow"></div>
+
+      <div id="controls">
+        <input type="text" id="messageInput" placeholder="Type your message..." size="40">
+        <button id="sendButton">Send ➡️</button>
+      </div>
+    </div>
+  </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>  
