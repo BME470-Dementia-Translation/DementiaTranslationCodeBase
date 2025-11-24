@@ -35,6 +35,8 @@
 
     .screenTitle{
       text-align: center;
+      padding: 0;
+      margin: 5px;
     }
 
     .labelText{
@@ -44,7 +46,7 @@
     #chatWindow {
       border: 1px solid #ccc;
       padding: 10px;
-      height: 55vh;
+      height: 60vh;
       overflow-y: auto;
       background-color: #f9f9f9;
     }
@@ -209,7 +211,14 @@
   align-items: center;
 }
 
+.pathwaysDisplay{
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 0 00px;
+  height: 5vh;
+  align-items: center;
 
+}
 
 
 #audioPlayer{
@@ -230,6 +239,10 @@
         <!--<p id="titleText">(Debug) Pathway title: </p>
         <p id="justificationText">(Debug) justification:</p> -->
         <h2 class="screenTitle">Caregiver Options</h2>
+        <div class="pathwaysDisplay">
+          <p id="categoryLabel">Output:</p>
+          <p id="subcategoryLabel">Output:</p>
+        </div>
         <div class="dropdownArray">
             <p class="labelText">Input:</p>
               <select id="dropDownLangIn">

@@ -471,6 +471,13 @@ function selectCategoryAndPathway(userInput) {
   }
 
 
+let categoryName = ""
+let subcategoryName = ""
+
+function displayCategory(){
+    document.getElementById("categoryLabel").textContent = "Category: " + categoryName;
+    document.getElementById("subcategoryLabel").textContent = "Subcategory: " + subcategoryName;
+}
 
 async function generateResponseBasedOnInput(){
   let userInput = interactionMessages[interactionMessages.length - 1]["content"]
@@ -479,6 +486,8 @@ async function generateResponseBasedOnInput(){
       console.log(selectedCategory)
       let selectedPathway = jsonData["conversational_pathways"][selectedCategory["category_index"]]["sub_categories"][selectedCategory["subcategory_index"]]["dialogue_flow"]
       let selectedPathwayString = JSON.stringify(selectedPathway);
+      categoryName = jsonData["conversational_pathways"][selectedCategory["category_index"]]["category"];
+      subcategoryName = jsonData["conversational_pathways"][selectedCategory["category_index"]]["sub_categories"][selectedCategory["subcategory_index"]]["name"]
       let chatbotIntegratingResponsePrompt = `
       You are a chatbot designed to support AI services to assist dementia patients. 
       Based on the user input and the provided conversation pathway, generate three response options. 
@@ -490,11 +499,14 @@ async function generateResponseBasedOnInput(){
       "option_3":<third response option>
       YOU MUST RESPOND ACCORDING TO THE CONDENSED TEXT JSON IN THE SELECTED PATHWAY SECTION.
 
+      SELECTED PATHWAY NAME:
+      ${categoryName}
+      
       SELECTED PATHWAY DESCRIPTION:
       ${jsonData["conversational_pathways"][selectedCategory["category_index"]]["description"]}
 
       SELECTED SUBPATHWAY NAME:
-      ${jsonData["conversational_pathways"][selectedCategory["category_index"]]["sub_categories"][selectedCategory["subcategory_index"]]["name"]}
+      ${subcategoryName}
 
       SELECTED SUBPATHWAY DIALOGUE FLOW:
       ${selectedPathwayString}
@@ -503,6 +515,7 @@ async function generateResponseBasedOnInput(){
       isInPathway = true;
 
   } 
+  displayCategory()
     let modelOutput = await(generateResponseOptionsModified())
     console.log(modelOutput)
     console.log(interactionMessages)
@@ -928,14 +941,17 @@ async function transcribeBlob(wavBlob) {
 
 //CHAT WINDOW UI CHANGING CODE
 
-const exitText = "Apologies, I will leave."
+const exitText = "I will leave."
 
 document.getElementById("stopConversation").addEventListener('click', () => {
   sendMessage(exitText);
 })
 
 document.getElementById("resetConversation").addEventListener('click', () => {
-  isInPathway = false;
+  isInPathway = false;  
+  categoryName = ""
+  subcategoryName = ""
+  displayCategory()
 })
 
 
