@@ -44,7 +44,7 @@
     #chatWindow {
       border: 1px solid #ccc;
       padding: 10px;
-      height: 65vh;
+      height: 55vh;
       overflow-y: auto;
       background-color: #f9f9f9;
     }
@@ -123,6 +123,26 @@
 
 #stopBtn:disabled{
   background-color: #989898;
+}
+
+
+.controlButton {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(179, 214, 243);
+  color: rgb(0, 0, 0);
+}
+
+#controlButtons {
+  padding: 0 00px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
 }
 
 
@@ -231,15 +251,15 @@
           <button class="optionBtn" id="buttonOption3"></button>
         </div>
         <div id="recordButtons">
-        <button id="recordBtn">Start Recording 🔴</button>
-        <button id="stopBtn">Stop Recording ⬛</button>    
+        <button id="recordBtn">Record 🔴</button>
+        <button id="stopBtn"> Transcribe ⬛</button>    
         </div>
         <div id="audioComponent">
           <audio id="audioPlayer" controls></audio>
           <select id="dropDownSpeed">
-                <option value="1">Speed: 1x</option>
+                <option value="1" selected>Speed: 1x</option>
                 <option value="0.75">Speed: 0.75x</option>
-                <option value="0.6" selected>Speed: 0.6x</option>
+                <option value="0.6" >Speed: 0.6x</option>
                 <option value="0.5" >Speed: 0.5x</option>
                 <option value="0.25">Speed: 0.25x</option>
            </select>   
@@ -255,6 +275,12 @@
         <input type="text" id="messageInput" placeholder="Type your message..." size="40">
         <button id="sendButton">Send ➡️</button>
       </div>
+
+      <div id="controlButtons">
+        <button class="controlButton" id="stopConversation"> Stop Conversation</button>
+        <button class="controlButton" id="resetConversation"> Reset Conversation</button>
+      </div>
+
     </div>
   </div>
     <script type="module" src="/src/main.js"></script>
