@@ -1024,13 +1024,12 @@ async function generateResponseOptionsModified() {
 
 
 
-async function generateSingleLineTextResponse() {
-  interactionMessages[0].content = chatbotIntegratingResponsePrompt
+async function generateSingleLineTextResponse(messages) {
   const client = new ModelClient("https://test251106-resource.cognitiveservices.azure.com/openai/deployments/gpt-4o", new AzureKeyCredential("F9Wvm1vgo73umRYk5EpcucYUW261beS7unYGulsTUk0Jdtps5ewtJQQJ99BKACHYHv6XJ3w3AAAAACOG8OfS"));
   var response = await client.path("/chat/completions?api-version=2025-01-01-preview").post({
       body: {
           model: "gpt-4o",
-          messages: interactionMessages,
+          messages: messages,
           response_format: {
               type: "text"
           }
@@ -1404,12 +1403,13 @@ const exitText = "I will leave."
 
 
 async function sendStopMessage(){
-    chatbotIntegratingResponsePrompt = `
+  let systemPrompt = `
     ${systemDescription}
 
-    You are to say goodbye to the patient. Please say goodbye in a kind way, based on message history, that is sensitive and brief. Keep it less than 10 words. 
+    You are to say goodbye to the patient. Please say goodbye in a kind way. That is sensitive and brief. Keep it less than 10 words. DO NOT USE MESSAGE HISTORY.
   `
-  let exitText = await(generateSingleLineTextResponse())
+  let messages = [{role:"system", content:systemPrompt}]
+  let exitText = await(generateSingleLineTextResponse(messages))
   sendMessage(exitText);
 }
 
