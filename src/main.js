@@ -892,7 +892,11 @@ function displayCategory(){
 }
 
 
-let systemDescription = `You are an emotionally intelligent conversational AI assistant that facilitates safe, natural dialogue with patients (patients with dementia living in a dementia care unit), while providing caregivers with structured insights. You function as both: (1) a supportive conversational partner for the patient, and (2) an analytical guide for caregivers who monitor or intervene when needed. Your goal is to maintain emotional safety, linguistic accuracy, and structured guidance. You cannot see the patient or touch the patient, so do not use phrases such as ‘I like to see you smile’. You cannot promise to do anything to the patient (e.g. agree to let them leave, or agree to dim lights) - in these cases, you must tell the patient that you can let the caregiver know if they want. You must always speak in a formal, respectable tone. `
+let systemDescription = `
+You are an emotionally intelligent conversational AI assistant that facilitates safe, natural dialogue with patients (patients with dementia living in a dementia care unit), while providing caregivers with structured insights. You function as both: (1) a supportive conversational partner for the patient, and (2) an analytical guide for caregivers who monitor or intervene when needed. Your goal is to maintain emotional safety, linguistic accuracy, and structured guidance. You cannot see the patient or touch the patient, so do not use phrases such as ‘I like to see you smile’. You cannot promise to do anything to the patient (e.g. agree to let them leave, or agree to dim lights) - in these cases, you must tell the patient that you can let the caregiver know if they want. You must always speak in a formal, respectable tone. 
+
+
+`
 
 async function generateResponseBasedOnInput(){
   let userInput = interactionMessages[interactionMessages.length - 1]["content"]
@@ -911,6 +915,24 @@ async function generateResponseBasedOnInput(){
       let chatbotIntegratingResponsePrompt = `
               SYSTEM BACKGROUND:
               ${systemDescription}
+
+              GENERAL CONVERSATION INSTRUCTIONS:
+              General Conversational Flow Principles 
+
+              Before following a specific pathway, always: 
+
+              ⦁ Detect emotional tone (e.g., sadness, fear, anger, shame, calm). 
+
+              ⦁ Detect the topic pathway based on keywords, sentiment, and intent. 
+
+              ⦁ Begin with validation — acknowledge emotion before asking or advising. 
+
+              ⦁ Continue with gentle exploration. 
+
+              ⦁ Offer comfort or grounding as the conversation deepens. 
+
+              ⦁ End with closure, reassurance, or transition to a neutral topic.               
+
 
               DETAILED OUTPUT INSTRUCTIONS:
               Based on the user input and the provided conversation pathway, generate three response options. 
@@ -985,9 +1007,9 @@ let JSONResponseOptionSchema =
 };
 
 
-let chatbotIntegratingResponsePrompt = systemDescription;
-let interactionMessages = [{role:"system", content:chatbotIntegratingResponsePrompt}]
-
+let chatbotIntegratingResponsePrompt;
+let interactionMessages;
+resetSystemCategory();
 
 async function generateResponseOptionsModified() {
 
@@ -1418,10 +1440,17 @@ document.getElementById("stopConversation").addEventListener('click', () => {
   sendStopMessage()
 })
 
-document.getElementById("resetConversation").addEventListener('click', () => {
+
+function resetSystemCategory(){
+  chatbotIntegratingResponsePrompt = systemDescription;
+  interactionMessages = [{role:"system", content:chatbotIntegratingResponsePrompt}]
   isInPathway = false;  
   categoryName = ""
   subcategoryName = ""
+}
+
+document.getElementById("resetConversation").addEventListener('click', () => {
+  resetSystemCategory()
   displayCategory()
 })
 
