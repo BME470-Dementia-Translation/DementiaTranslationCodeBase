@@ -217,7 +217,10 @@
   padding: 0 00px;
   height: 5vh;
   align-items: center;
+}
 
+.dropdownAccessible{
+  height: 25px;
 }
 
 
@@ -245,13 +248,13 @@
         </div>
         <div class="dropdownArray">
             <p class="labelText">Input:</p>
-              <select id="dropDownLangIn">
+              <select class="dropdownAccessible" id="dropDownLangIn">
                 <option value="pt-BR" selected>Portuguese (Brazillian)</option>
                 <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
                 <option value="en-CA">English</option>
               </select>
               <p class="labelText">Output:</p>
-              <select id="dropDownLangOut">
+              <select class="dropdownAccessible" id="dropDownLangOut">
                 <option value="pt-BR">Portuguese (Brazillian)</option>
                 <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
                 <option value="en-CA" selected>English</option>
@@ -269,7 +272,7 @@
         </div>
         <div id="audioComponent">
           <audio id="audioPlayer" controls></audio>
-          <select id="dropDownSpeed">
+          <select class="dropdownAccessible" id="dropDownSpeed">
                 <option value="1" selected>Speed: 1x</option>
                 <option value="0.75">Speed: 0.75x</option>
                 <option value="0.6" >Speed: 0.6x</option>
