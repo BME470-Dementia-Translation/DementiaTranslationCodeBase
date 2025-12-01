@@ -1105,6 +1105,18 @@ dropDownSpeed.addEventListener('change', function() {
   speed = selectedValue;
 });
 
+
+const fontSizeChange = document.getElementById('fontSizeSelect');
+let fontSizeScale = fontSizeChange.value;
+document.documentElement.style.setProperty('--font-size', 14 * fontSizeScale + 'px');
+document.documentElement.style.setProperty('--font-size-title', 30 * fontSizeScale + 'px');
+fontSizeChange.addEventListener('change', function() {
+  const fontSizeScale = fontSizeChange.value;
+  document.documentElement.style.setProperty('--font-size', 14 * fontSizeScale + 'px');
+  document.documentElement.style.setProperty('--font-size-title', 30 * fontSizeScale + 'px');
+});
+
+
 //displayResponseOptions(emptyOptionsSchema)
 
 

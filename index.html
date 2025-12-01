@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <title>AI Translator</title>
   <style>
+    :root {
+      --font-size: 14px ;
+      --font-size-title: 30px ;
+    }
+
+    h2{
+      font-size: var(font-size-title);
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -37,6 +46,7 @@
       text-align: center;
       padding: 0;
       margin: 5px;
+      font-size: var(--font-size-title);
     }
 
     .labelText{
@@ -57,6 +67,7 @@
       border-radius: 10px;
       max-width: 70%;
       clear: both;
+      font-size: var(--font-size);
     }
 
     .user1 {
@@ -71,6 +82,10 @@
       text-align: left;
     }
 
+button{
+  font-size: var(--font-size);
+}
+
 #controls {
   margin-top: 10px;
   display: grid;
@@ -83,7 +98,7 @@
   height: 40px;
   border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: var(--font-size);
   border: 1px solid #ccc;
   box-sizing: border-box;
   width: 100%;
@@ -92,7 +107,7 @@
 #sendButton {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: var(--font-size);
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(179, 214, 243);
@@ -102,7 +117,6 @@
 #recordBtn {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(255, 202, 202);
@@ -116,7 +130,6 @@
 #stopBtn {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(224, 255, 233);
@@ -131,7 +144,6 @@
 .controlButton {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(179, 214, 243);
@@ -179,9 +191,10 @@
 
 
 .optionBtn {
-  height: 60px;
+  min-height: 60px;
+  max-height: fit-content;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: var(--font-size);
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(224, 238, 255);
@@ -215,17 +228,40 @@
   display: grid;
   grid-template-columns: auto auto;
   padding: 0 00px;
-  height: 5vh;
+  min-height: 5vh;
+  max-height: fit-content;
   align-items: center;
 }
 
+select{
+  font-size: var(--font-size);
+}
+
 .dropdownAccessible{
-  height: 25px;
+  min-height: 20px;
+  max-height: fit-content;
 }
 
 
 #audioPlayer{
   height: 50px;
+}
+
+p {
+  font-size: var(--font-size);
+}
+
+audio {
+  font-size: var(--font-size);
+}
+
+#fontsizeChangeGrid{
+  padding: 0 20px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  align-items: center;
 }
 
 
@@ -260,7 +296,7 @@
                 <option value="en-CA" selected>English</option>
               </select>              
         </div>
-        <p id="PromptStatus" class="labelText"> </hp>
+        <p id="PromptStatus" class="labelText"> </p>
         <div class="optionsMenu">
           <button class="optionBtn" id="buttonOption1"></button>
           <button class="optionBtn" id="buttonOption2"></button>
@@ -280,6 +316,16 @@
                 <option value="0.25">Speed: 0.25x</option>
            </select>   
         </div>
+        <div id="fontsizeChangeGrid">
+          <p id="PromptStatus" class="labelText"> Font Size: </p>
+          <select class="dropdownAccessible" id="fontSizeSelect">
+                <option value="1.00" selected>Size: 1x</option>
+                <option value="1.25" >Size: 1.25x</option>
+                <option value="1.50" >Size: 1.50x</option>
+                <option value="1.75" >Size: 1.75x</option>
+                <option value="2.00" >Size: 2.0x</option>
+           </select>   
+        </div>        
         </div>
     </div>
 
