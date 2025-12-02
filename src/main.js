@@ -160,7 +160,9 @@ let jsonData =
           "The coat rack is moving towards me and talking to me",
           "My partner is being unfaithful",
           "They are trying to steal my things",
-          "someone is here"
+          "someone is here",
+          "Someone keeps taking my things and stealing what is mine",
+          "I am not safe here because someone is trying to hurt me"
         ],
         "key_identifiers": [
           "stealing",
@@ -178,7 +180,8 @@ let jsonData =
               "Someone stole my purse",
               "My purse is missing",
               "You took my things",
-              "Did you steal my things"
+              "Did you steal my things",
+              "They stole something from my room"
             ],
             "key_identifiers": [
               "stole",
@@ -192,7 +195,7 @@ let jsonData =
         },
         {
           "id": "harm",
-          "name": "Others Trying to Harm Them",
+          "name": "Harm and Persecution",
           "subcategory_description":"This subcategory addresses patient beliefs regarding external harm, poisoning, or immediate danger. It detects high-risk language involving accusations of murder, sexual assault, poisoning, or reciprocal threats of violence. The objective is to ensure safety and emotional containment while investigating the underlying source of the expressed fear through specific keyword recognition.",
           "detection": {
             "example_phrases": [
@@ -200,7 +203,8 @@ let jsonData =
               "There is a man here who wants to kill me",
               "They killed my brother and my sister and my whole family",
               "If he yells one more time I am going to strangle him",
-              "Every night men come to my room and rape me"
+              "Every night men come to my room and rape me",
+              "There is poison"
             ],
             "key_identifiers": [
               "poison",
@@ -237,7 +241,8 @@ let jsonData =
             "example_phrases": [
               "I see a baby, someone help it!",
               "There are bugs crawling on the walls",
-              "Why is nobody catching that dog"
+              "Why is nobody catching that dog",
+              "I am hearing a strange voice"
             ],
             "key_identifiers": [
               "baby",
@@ -254,12 +259,14 @@ let jsonData =
           "subcategory_description":"This subcategory addresses situations where paranoia escalates into shouting, aggression, or incoherence, with the primary goal of immediate de-escalation. It identifies emotionally charged behavior through the detection of swearing, fragmented speech, yelling, and hostile directives. The system recognizes these high-arousal cues and verbal attacks to trigger calming interventions and prevent further distress.",
           "detection": {
             "example_phrases": [
-              "leave me along",
+              "leave me alone",
               "I don't wnat this",
               "I told you already",
               "stop talking to me",
               "you are annoying me",
-              "fuck off"
+              "I hate you",
+              "fuck off",
+              "Go away"
             ]
           },
           "subcategory_conversation_instruction":"Acknowledge the patient's upset state and encourage them to take deep breaths to facilitate calm communication. Repeat this de-escalation process up to a maximum of three times if the patient remains difficult to understand. Treat the initial attempt as a medium risk scenario; however, if the patient remains unintelligible after the third attempt, escalate the situation to high risk and generate a textual alert for the caregiver indicating that translation is not possible."
@@ -276,7 +283,10 @@ let jsonData =
           "I feel sexy sometimes",
           "Take off your shirt",
           "I want to watch some porn",
-          "Come sit on my lap"
+          "Come sit on my lap",
+          "I want to have sex with them",
+          "I want to see you naked",
+          "I want to touch your pussy"
         ],
         "key_identifiers": [
           "sex",
@@ -291,7 +301,7 @@ let jsonData =
       "sub_categories": [
         {
           "id": "suggestive_non_harmful",
-          "name": "Category 1: Sexually Suggestive Comments (Non-Harmful)",
+          "name": "Non-Harmful Sexual Content",
           "subcategory_description":"This subcategory identifies sexually suggestive comments that are non-harmful, often rooted in emotion, nostalgia, or a desire for connection rather than aggression. It detects self-focused or reflective statements regarding loneliness, past intimacy, or feeling attractive, as well as specific references to sexual media. The system utilizes key identifiers such as miss, remember, lonely, and desires to distinguish these expressions of human need from explicit boundary violations.",
           "detection": {
             "tone_identifiers": [
@@ -300,11 +310,12 @@ let jsonData =
               "References to sexual media"
             ],
             "example_phrases": [
-              "I miss sleeping with my wife — she was so hot in bed",
+              "I miss sleeping with my wife she was so hot in bed",
               "I feel sexy sometimes",
               "I remember when my wife used to...",
               "I want to watch some porn. It turns me on.",
-              "Can you get me something to help me out?"
+              "Can you get me something to help me out?",
+              "I want you in my bed"
             ],
             "key_identifiers": [
               "miss",
@@ -320,7 +331,7 @@ let jsonData =
         },
         {
           "id": "explicit_harmful",
-          "name": "Category 2: Explicit Sexual Propositions (Harmful)",
+          "name": "Explicit Sexual Content",
           "subcategory_description":"This subcategory detects explicit and harmful sexual propositions characterized by commanding or directive tones and second-person targeting. It identifies coercive requests and aggressive sexual vocabulary, including specific anatomical references or demands for physical acts. The system utilizes key identifiers involving terms like naked, suck, and references to the listener's body to recognize these severe boundary violations and initiate immediate protective protocols.",
           "detection": {
             "tone_identifiers": [
@@ -333,7 +344,10 @@ let jsonData =
               "Give me a blow job",
               "Come sit on my lap",
               "Come here and let me feel if your pussy is wet",
-              "Touch me"
+              "Touch me",
+              "I want you naked",
+              "I like your body"
+
             ],
             "key_identifiers": [
               "pussy",
@@ -359,7 +373,8 @@ let jsonData =
           "I want to kill myself",
           "What happens when I die?",
           "I don't care if I live or die",
-          "My family would be better off without me"
+          "My family would be better off without me",
+          "Is there a heaven"
         ],
         "key_identifiers": [
           "die",
@@ -373,14 +388,15 @@ let jsonData =
       "sub_categories": [
         {
           "id": "emotional_distress_fear",
-          "name": "Category 7.1: Emotional Distress / Fear of Dying",
+          "name": "Fear of Dying",
           "subcategory_description":"This subcategory identifies patient expressions of existential anxiety, confusion, or distress regarding death. It detects verbal indicators of fear, resistance, or impending doom, such as statements about dying or anticipating negative events. The system utilizes key identifiers related to fear and anxiety to recognize these emotional states and trigger the appropriate supportive pathway.",
           "detection": {
             "example_phrases": [
-              "I’m dying",
-              "I don’t want to die",
-              "I’m scared I’m going to die",
-              "Something bad will happen to me"
+              "I am dying",
+              "I do not want to die",
+              "I am scared I am going to die",
+              "Something bad will happen to me",
+              "I feel anxious about life"
             ],
             "key_identifiers": [
               "scared",
@@ -394,14 +410,19 @@ let jsonData =
         },
         {
           "id": "passive_suicidal_ideation",
-          "name": "Category 7.2: Passive Suicidal Ideation",
+          "name": "Passive Suicidal Ideation",
           "subcategory_description":"This subcategory identifies passive suicidal ideation characterized by expressions of hopelessness, emotional exhaustion, or a desire not to exist, devoid of active intent. It detects sentiments regarding being better off dead, wishing to sleep indefinitely, or perceiving life as pointless. The system utilizes key identifiers such as sleep, wake up, or useless to recognize these semantically similar statements of passive resignation.",
           "detection": {
             "example_phrases": [
-              "I don’t care if I live or die",
-              "Maybe I’ll fall asleep and never wake up",
+              "I do not care if I live or die",
+              "Maybe I will fall asleep and never wake up",
               "My family would be better off without me",
-              "I don’t see the point anymore"
+              "I do not see the point anymore",
+              "Life does not matter",
+              "I am just waiting now",
+              "Is there a heaven",
+              "heaven",
+              "heaven"
             ],
             "key_identifiers": [
               "sleep",
@@ -416,13 +437,15 @@ let jsonData =
         },
         {
           "id": "active_suicidal_ideation",
-          "name": "Category 7.3: Active Suicidal Ideation",
+          "name": "Active Suicidal Ideation",
           "subcategory_description":"This subcategory detects active suicidal ideation marked by an immediate intent or specific plan for self-harm. It identifies urgent threats involving lethal means or dangerous actions, utilizing key indicators related to killing, weapons, or jumping to trigger immediate high-priority escalation.",
           "detection": {
             "example_phrases": [
-              "I’m going to kill myself",
+              "I am going to kill myself",
               "Give me a knife",
-              "I want to jump out the window"
+              "I want to jump out the window",
+              "I want to commit suicide",
+              "I am going to hurt myself"
             ],
             "key_identifiers": [
               "kill",
@@ -437,14 +460,16 @@ let jsonData =
         },
         {
           "id": "eol_curiosity_planning",
-          "name": "Category 7.4: End-of-Life Curiosity & Advance Care Planning",
+          "name": "End-of-Life Curiosity",
           "subcategory_description":"This subcategory detects curiosity and logistical inquiries regarding the end of life, distinguishing them from distress or suicidal ideation. It identifies questions about the timing of death, funeral arrangements, or the nature of dying. The system utilizes key identifiers such as buried, funeral, and end to recognize these reflective or planning-oriented statements.",
           "detection": {
             "example_phrases": [
               "What happens when I die?",
               "How long do I have left?",
               "Will I be buried here?",
-              "I’m wondering what the end will look like"
+              "I am wondering what the end will look like",
+              "What will my funeral be like",
+              "Are my final moments near?"
             ],
             "key_identifiers": [
               "happens",
@@ -470,7 +495,10 @@ let jsonData =
           "My back hurts",
           "It's so quiet",
           "I need to go to the washroom",
-          "It is too hot in here"
+          "It is too hot in here",
+          "I am in pain",
+          "I am too cold",
+          "I am itchy"
         ],
         "key_identifiers": [
           "hurt",
@@ -486,14 +514,16 @@ let jsonData =
       "sub_categories": [
         {
           "id": "connection_belonging",
-          "name": "Category 5.1: Connection / Belonging Pathway",
+          "name": "Loneliness and Connection",
           "subcategory_description":"This subcategory detects social, emotional, or attachment-related discomfort characterized by expressions of emptiness, loneliness, or a lack of connection. Identifiers include behavioral cues such as minimal speech or repetitive questioning, alongside specific statements regarding missing family or feeling isolated. The system recognizes these key terms to initiate pathways focused on comfort and redirection toward reminiscence.",
           "detection": {
             "example_phrases": [
-              "It’s so quiet",
+              "It is so quiet",
               "I feel empty",
               "No one visits me",
-              "I miss my family"
+              "I miss my family",
+              "I am looking for my family",
+              "I am lonely"
             ],
             "behavioral_identifiers": [
               "No response or minimal speech",
@@ -512,16 +542,17 @@ let jsonData =
         },
         {
           "id": "comfort_safety",
-          "name": "Category 5.2: Comfort / Safety Pathway",
+          "name": "Physical Discomfort",
           "subcategory_description":"This subcategory functions to explore, validate, and classify discomfort stemming from physical or internal sensations, such as pain, unease, or fatigue. It identifies specific linguistic markers indicating somatic distress, including statements about feeling strange, being tired, or experiencing specific symptoms like back pain or itching. The system detects key identifiers related to anxiety, agitation, stiffness, thirst, and hunger to route the conversation to the appropriate management pathway for addressing these physical needs.",
           "detection": {
             "example_phrases": [
-              "I don’t feel right",
-              "Something’s off",
+              "I do not feel right",
+              "Something is off",
               "My back hurts",
               "I feel strange",
-              "I’m tired",
-              "I can’t stop scratching"
+              "I am tired",
+              "I cannot stop scratching",
+              "I am very itchy"
             ],
             "key_identifiers": [
               "hurts",
@@ -541,7 +572,7 @@ let jsonData =
         },
         {
           "id": "environmental_discomfort",
-          "name": "Category 5.3: Environmental Discomfort / Stimulation Pathway",
+          "name": "Environmental Discomfort",
           "subcategory_description":"This subcategory identifies and relieves discomfort caused by external environmental factors to restore emotional stability. It detects specific sensory complaints related to feeling wet, temperature extremes, lighting conditions, noise levels, or the presence of foreign objects. The system recognizes key indicators such as descriptions of being hot, cold, or the environment being too loud or bright to trigger the appropriate relief pathway.",
           "detection": {
             "identifiers": [
@@ -555,7 +586,9 @@ let jsonData =
               "It is too loud",
               "It is freezing in here",
               "The light is too bright",
-              "My bed is wet"
+              "I am so hot",
+              "My bed is wet",
+              "It is so dark in here"
             ],
             "key_identifiers": [
               "wet",
@@ -571,14 +604,16 @@ let jsonData =
         },
         {
           "id": "bathroom_discomfort",
-          "name": "Category 5.4: Bathroom-Related Discomfort Pathway",
+          "name": "Bathroom-Related",
           "subcategory_description":"This subcategory addresses toileting or hygiene-related needs compassionately and safely. It detects specific requests to use the facilities or bathe, along with expressions of feeling dirty or wet. The system identifies these physiological necessities using keywords such as washroom, bathroom, toilet, shower, and associated terms regarding cleanliness or physical sensation.",
           "detection": {
             "example_phrases": [
               "I need to go to the washroom",
               "I feel dirty",
               "I want to shower",
-              "I feel wet"
+              "I feel wet",
+              "I want to go to the bathroom",
+              "I want to use the toilet"
             ],
             "key_identifiers": [
               "washroom",
@@ -599,10 +634,10 @@ let jsonData =
       "entry_detection": {
         "method": "cosine_similarity",
         "example_phrases": [
-          "I used to ...",
-          "I miss ...",
-          "I remember those days ... ",
-          "It was such a good memory ...",
+          "I used to ",
+          "I miss ",
+          "I remember those days  ",
+          "It was such a good memory ",
           "I haven't eaten ... for a while"
         ],
         "key_identifiers": [
@@ -617,7 +652,7 @@ let jsonData =
       "sub_categories": [
         {
           "id": "General Reminiscence",
-          "name": "Category 1: General Reminiscence",
+          "name": "General Reminiscence",
           "subcategory_description":"This subcategory addresses vague references to the past by encouraging the recall of positive or emotionally neutral memories. The objective is to transition general statements into specific details regarding people, places, or sensory experiences through validation and gentle inquiry, ensuring the conversation remains grounded and comforting.",
           "detection": {
             "tone_identifiers": [
@@ -645,7 +680,7 @@ let jsonData =
         },
         {
           "id": "Focused Reminiscence",
-          "name": "Category 2: Focused Reminiscence",
+          "name": "Focused Reminiscence",
           "subcategory_description":"This subcategory identifies specific, detail-oriented memories anchored in personal history and family connections. It detects clear references to distinct people, places, foods, or cultural events, characterized by a tone of specific recall rather than vague nostalgia. Recognition relies on key family identifiers and action-based phrasing, signaling a focus on concrete past experiences and relationships.",
           "detection": {
             "tone_identifiers": [
@@ -654,10 +689,15 @@ let jsonData =
               "References to specific place/person/foods/festivals/history/religion etc."
             ],
             "example_phrases": [
-              "My father used to make me ...",
-              "I miss when I went to ...",
-              "My mother used to like eating ...",
-              "I used to go to ... with my siblings"
+              "My father used to make me",
+              "I miss when I went to ",
+              "My mother used to like eating ",
+              "I used to go to the park with my siblings",
+              "I remember my children",
+              "My son and daughter",
+              "My grandson and granddaughter",
+              "grandchild",
+              "grandchildren"
             ],
             "key_identifiers": [
               "mother", "father", "siblings", "children", "daughter", "son", "grandchildren", "granddaughter", "grandson",
@@ -678,9 +718,9 @@ let jsonData =
           "I want to go home",
           "I want to leave",
           "I need to get out of here",
-          "I don't belong here",
+          "I do not belong here",
           "I have to go see my wife",
-          "I don't want to stay here anymore"
+          "I do not want to stay here anymore"
         ],
         "key_identifiers": [
           "leave",
@@ -694,8 +734,8 @@ let jsonData =
       },
       "sub_categories": [
         {
-          "id": "Initial Expression of Desire to Leave",
-          "name": "Category 1: Initial Expression of Desire to Leave",
+          "id": "Initial Desire to Leave",
+          "name": "Initial Desire to Leave",
           "subcategory_description":"This subcategory focuses on identifying the initial expression of a patient's desire to leave their current environment or return to a familiar place. It detects an uncertain, worried, or lost tone accompanied by clear statements about wanting to go home, go outside, or simply exit the premises. The system looks for specific key identifiers related to leaving to trigger the appropriate pathway for managing these exit-seeking behaviors.",
           "detection": {
             "tone_identifiers": [
@@ -721,7 +761,7 @@ let jsonData =
         },
         {
           "id": "Escalation of Desire to Leave",
-          "name": "Category 2: Escalating Expression of Desire to Leave",
+          "name": "Repeated Wanting to Leave",
           "subcategory_description":"This subcategory targets persistent requests to leave that continue despite initial reassurance or are restated multiple times. It identifies escalating, urgent, or agitated tones characterized by command-like phrasing and references to immediate action. Detection relies on key identifiers indicating necessity or immediacy, signaling a shift from simple expression to a more directive or repetitive demand to exit.",
           "detection": {
             "tone_identifiers": [
@@ -733,7 +773,8 @@ let jsonData =
               "I need to go home",
               "Let me go now",
               "I'm going",
-              "I'm leaving now"
+              "I'm leaving now",
+              "I want to leave"
             ],
             "key_identifiers": [
               "going now",
