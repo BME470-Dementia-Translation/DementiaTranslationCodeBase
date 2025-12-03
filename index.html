@@ -4,11 +4,36 @@
   <meta charset="UTF-8">
   <title>AI Translator</title>
   <style>
+
+
+/*
+
+ATTRIBUTION: Root Variable Changing code start sample written by Microsoft Copilot AI
+ATTRIBUTION: Root Variable Changing code modified by Nicholas Sinclair to include title, and for implementation in application. 
+:root {
+  --base-font: 16px;   
+  --scale-factor: 1.2em; 
+}
+
+*/
+    :root {
+      --font-size: 14px ;
+      --font-size-title: 30px ;
+    }
+
+    h2{
+      font-size: var(font-size-title);
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
     }
+
+
+
+
 
     .grid-container {
       display: grid;
@@ -35,6 +60,9 @@
 
     .screenTitle{
       text-align: center;
+      padding: 0;
+      margin: 5px;
+      font-size: var(--font-size-title);
     }
 
     .labelText{
@@ -44,7 +72,7 @@
     #chatWindow {
       border: 1px solid #ccc;
       padding: 10px;
-      height: 65vh;
+      height: 60vh;
       overflow-y: auto;
       background-color: #f9f9f9;
     }
@@ -55,6 +83,7 @@
       border-radius: 10px;
       max-width: 70%;
       clear: both;
+      font-size: var(--font-size);
     }
 
     .user1 {
@@ -69,6 +98,10 @@
       text-align: left;
     }
 
+button{
+  font-size: var(--font-size);
+}
+
 #controls {
   margin-top: 10px;
   display: grid;
@@ -81,7 +114,7 @@
   height: 40px;
   border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: var(--font-size);
   border: 1px solid #ccc;
   box-sizing: border-box;
   width: 100%;
@@ -90,7 +123,7 @@
 #sendButton {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: var(--font-size);
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(179, 214, 243);
@@ -100,7 +133,6 @@
 #recordBtn {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(255, 202, 202);
@@ -114,7 +146,6 @@
 #stopBtn {
   height: 40px;
   padding: 0 10px;
-  font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(224, 255, 233);
@@ -123,6 +154,25 @@
 
 #stopBtn:disabled{
   background-color: #989898;
+}
+
+
+.controlButton {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(179, 214, 243);
+  color: rgb(0, 0, 0);
+}
+
+#controlButtons {
+  padding: 0 00px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
 }
 
 
@@ -157,9 +207,10 @@
 
 
 .optionBtn {
-  height: 60px;
+  min-height: 60px;
+  max-height: fit-content;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: var(--font-size);
   border-radius: 10px;
   cursor: pointer;
   background-color: rgb(224, 238, 255);
@@ -189,11 +240,44 @@
   align-items: center;
 }
 
+.pathwaysDisplay{
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 0 00px;
+  min-height: 5vh;
+  max-height: fit-content;
+  align-items: center;
+}
 
+select{
+  font-size: var(--font-size);
+}
+
+.dropdownAccessible{
+  min-height: 20px;
+  max-height: fit-content;
+}
 
 
 #audioPlayer{
   height: 50px;
+}
+
+p {
+  font-size: var(--font-size);
+}
+
+audio {
+  font-size: var(--font-size);
+}
+
+#fontsizeChangeGrid{
+  padding: 0 20px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  align-items: center;
 }
 
 
@@ -210,40 +294,74 @@
         <!--<p id="titleText">(Debug) Pathway title: </p>
         <p id="justificationText">(Debug) justification:</p> -->
         <h2 class="screenTitle">Caregiver Options</h2>
+        <div class="pathwaysDisplay">
+          <p id="categoryLabel">Output:</p>
+          <p id="subcategoryLabel">Output:</p>
+        </div>
         <div class="dropdownArray">
             <p class="labelText">Input:</p>
-              <select id="dropDownLangIn">
+              <select class="dropdownAccessible" id="dropDownLangIn">
                 <option value="pt-BR" selected>Portuguese (Brazillian)</option>
                 <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
                 <option value="en-CA">English</option>
               </select>
               <p class="labelText">Output:</p>
-              <select id="dropDownLangOut">
+              <select class="dropdownAccessible" id="dropDownLangOut">
                 <option value="pt-BR">Portuguese (Brazillian)</option>
                 <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
                 <option value="en-CA" selected>English</option>
               </select>              
         </div>
-        <p id="PromptStatus" class="labelText"> </hp>
+        <p id="PromptStatus" class="labelText"> </p>
+
+<!-- 
+
+ATTRIBUTION: DROPDOWN CODE SAMPLE WRITTEN BY MICROSOFT COPILOT AI
+ATTRIBTUION: ADAPTED BY NICHOLAS SINCLAIR FOR IMPLEMENTATION. 
+  <select id="myDropdown">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+  </select>        
+
+-->
+
         <div class="optionsMenu">
           <button class="optionBtn" id="buttonOption1"></button>
           <button class="optionBtn" id="buttonOption2"></button>
           <button class="optionBtn" id="buttonOption3"></button>
         </div>
+
+
         <div id="recordButtons">
-        <button id="recordBtn">Start Recording 🔴</button>
-        <button id="stopBtn">Stop Recording ⬛</button>    
+        <button id="recordBtn">Record 🔴</button>
+        <button id="stopBtn"> Transcribe ⬛</button>    
         </div>
         <div id="audioComponent">
+
+<!--
+CODE ADAPTED FROM
+<audio id="audioPlayer" controls></audio>         
+
+-->
           <audio id="audioPlayer" controls></audio>
-          <select id="dropDownSpeed">
-                <option value="1">Speed: 1x</option>
+          <select class="dropdownAccessible" id="dropDownSpeed">
+                <option value="1" selected>Speed: 1x</option>
                 <option value="0.75">Speed: 0.75x</option>
-                <option value="0.6" selected>Speed: 0.6x</option>
+                <option value="0.6" >Speed: 0.6x</option>
                 <option value="0.5" >Speed: 0.5x</option>
                 <option value="0.25">Speed: 0.25x</option>
            </select>   
         </div>
+        <div id="fontsizeChangeGrid">
+          <p id="PromptStatus" class="labelText"> Font Size: </p>
+          <select class="dropdownAccessible" id="fontSizeSelect">
+                <option value="1.00" selected>Size: 1x</option>
+                <option value="1.25" >Size: 1.25x</option>
+                <option value="1.50" >Size: 1.50x</option>
+                <option value="1.75" >Size: 1.75x</option>
+                <option value="2.00" >Size: 2.0x</option>
+           </select>   
+        </div>        
         </div>
     </div>
 
@@ -255,6 +373,12 @@
         <input type="text" id="messageInput" placeholder="Type your message..." size="40">
         <button id="sendButton">Send ➡️</button>
       </div>
+
+      <div id="controlButtons">
+        <button class="controlButton" id="stopConversation"> Stop Conversation</button>
+        <button class="controlButton" id="resetConversation"> Reset Conversation</button>
+      </div>
+
     </div>
   </div>
     <script type="module" src="/src/main.js"></script>
