@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--
+ATTRIBUTION: INITIAL PAGE STRUCTURE WRITTEN BY MICROSOFT COPILOT AI
+ATTRIBUTION: SUBSEQUENT MODIFICATIONS CREATED BY NICHOLAS SINCLAIR (SEE AI USE IN OTHER ATTRIBUTIONS).
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Recorder</title>
+</head>
+<body>
+  <button id="recordBtn">Record Audio</button>
+  <script src="script.js"></script>
+</body>
+</html>
+
+-->
+
+
 <head>
   <meta charset="UTF-8">
   <title>AI Translator</title>
@@ -32,8 +52,74 @@ ATTRIBUTION: Root Variable Changing code modified by Nicholas Sinclair to includ
     }
 
 
+/*
+
+ATTRIBUTION: Initial grid container, columns, and chat window styles written by Microsoft Copilot AI.
+ATTRIBUTION: Adapted by Nicholas Sinclair for reformatting, style modifications, and integration into application.
+GENERATED CODE BELOW:
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .left-column {
+      background-color: #ffffff;
+    }
+
+    .right-column {
+      padding: 20px;
+      background-color: #f0f0f0;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    #chatWindow {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 70%;
+      clear: both;
+    }
+
+    .user1 {
+      background-color: #d1e7dd;
+      float: right;
+      text-align: right;
+    }
+
+    .user2 {
+      background-color: #f8d7da;
+      float: left;
+      text-align: left;
+    }
+
+    #controls {
+      margin-top: 10px;
+    }
+
+    button {
+      margin-right: 5px;
+    }
 
 
+
+*/
 
     .grid-container {
       display: grid;
@@ -98,6 +184,49 @@ ATTRIBUTION: Root Variable Changing code modified by Nicholas Sinclair to includ
       text-align: left;
     }
 
+
+/*
+ATTRIBUTION: CONTROLS, MESSAGE INPUT, AND BUTTON ATTRIBUTION CODE WRITTEN BY MICROSOFT COPILOT AI
+ATTRIBUTION: ADAPTED BY NICHOLAS SINCLAIR FOR IMPLEMENTATION, INCLUDING MODIFICATION OF BUTTON CLASS, MODIFICATION OF SPECIFIC BUTTON STYLES BASED ON AI GENERATED CODE, ADDITION OF STYLE WHEN BUTTON IS DISABLED. ADDITIONAL DIV ELEMENTS WERE BASED ON THE CODE FOR THE "controls" STYLE ID. 
+
+GENERATED CODE BELOW:
+#controls {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+#messageInput {
+  height: 50px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+button {
+  height: 50px;
+  padding: 0 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+
+*/
+
+/*
+ATTRIBUTION: ALL INSTANCES OF FONT-SIZE VARIABLE CODE INSPIRED BY MICROSOFT COPILOT AI CODE
+ATTRIBUTION: IMPLEMENTATION OF VARAIBLE FONT SIZE CODE IN APPLICATION BY NICHOLAS SINCLAIR
+
+AI GENERATED CODE:
+p {
+  font-size: var(--font-size);
+}
+*/
+
 button{
   font-size: var(--font-size);
 }
@@ -156,7 +285,6 @@ button{
   background-color: #989898;
 }
 
-
 .controlButton {
   height: 40px;
   padding: 0 10px;
@@ -174,7 +302,6 @@ button{
   gap: 10px;
   align-items: center;
 }
-
 
 #recordButtons {
   padding: 0 20px;
@@ -205,7 +332,6 @@ button{
   
 }
 
-
 .optionBtn {
   min-height: 60px;
   max-height: fit-content;
@@ -217,7 +343,6 @@ button{
   color: rgb(0, 0, 0);
 }
 
-
 .sideControls {
   padding: 0 20px;
   margin-top: 10px;
@@ -227,8 +352,6 @@ button{
   gap: 10px;
   align-items: center;
 }
-
-
 
 .dropdownArray {
   padding: 0 20px;
@@ -253,6 +376,9 @@ select{
   font-size: var(--font-size);
 }
 
+/*
+ATTRIBUTION: dropdownAccessible CREATED BY NICHOLAS SINCLAIR
+*/
 .dropdownAccessible{
   min-height: 20px;
   max-height: fit-content;
@@ -285,14 +411,19 @@ audio {
   </style>
 </head>
 <body>
+<!-- 
+
+ATTRIBUTION: GRID CONTAINER AND LEFT COLUMN DIVS WRITTEN BY MICROSOFT COPILOT AI
+
+  <div class="grid-container">
+    <div class="left-column"></div>
+  -->
 
   <div class="grid-container">
     
     <div class="left-column">
 
       <div class="sideControls">
-        <!--<p id="titleText">(Debug) Pathway title: </p>
-        <p id="justificationText">(Debug) justification:</p> -->
         <h2 class="screenTitle">Caregiver Options</h2>
         <div class="pathwaysDisplay">
           <p id="categoryLabel">Output:</p>
@@ -302,13 +433,11 @@ audio {
             <p class="labelText">Input:</p>
               <select class="dropdownAccessible" id="dropDownLangIn">
                 <option value="pt-BR" selected>Portuguese (Brazillian)</option>
-                <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
                 <option value="en-CA">English</option>
               </select>
               <p class="labelText">Output:</p>
               <select class="dropdownAccessible" id="dropDownLangOut">
                 <option value="pt-BR">Portuguese (Brazillian)</option>
-                <!--<option value="zh-HK">Cantonese (Hong Kong)</option>-->
                 <option value="en-CA" selected>English</option>
               </select>              
         </div>
@@ -339,8 +468,17 @@ ATTRIBTUION: ADAPTED BY NICHOLAS SINCLAIR FOR IMPLEMENTATION.
         <div id="audioComponent">
 
 <!--
-CODE ADAPTED FROM
+ATTRIBUTION: AUDIO COMPONENT CODE WRITTEN BY MICROSOFT COPILOT AI
 <audio id="audioPlayer" controls></audio>         
+-->
+
+<!-- 
+ATTRIBUTION: DROPDOWN CODE SAMPLE WRITTEN BY MICROSOFT COPILOT AI
+ATTRIBTUION: ADAPTED BY NICHOLAS SINCLAIR FOR IMPLEMENTATION. 
+  <select id="myDropdown">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+  </select>        
 
 -->
           <audio id="audioPlayer" controls></audio>
@@ -367,8 +505,26 @@ CODE ADAPTED FROM
 
     <div class="right-column">
       <h2 class="screenTitle">AI Translated Conversation</h2>
+    
+  <!--
+ATTRIBUTION: ChatWindow and Controls initial code created by Microsoft Copilot AI
+ATTRIBTUION: ADAPTED BY NICHOLAS SINCLAIR FOR IMPLEMENTATION, ALONG WITH ADDITIONS OF CONTROL BUTTONS AND MESSAGE SEND BUTTON
+
+    <div class="right-column">
+      <h2>Chat Window</h2>
       <div id="chatWindow"></div>
 
+      <div id="controls">
+        <input type="text" id="messageInput" placeholder="Type your message..." size="40">
+        <button onclick="sendUser1()">Send as User 1</button>
+        <button onclick="sendUser2()">Send as User 2</button>
+      </div>
+    </div>
+  </div>
+
+
+-->
+      <div id="chatWindow"></div>
       <div id="controls">
         <input type="text" id="messageInput" placeholder="Type your message..." size="40">
         <button id="sendButton">Send ➡️</button>
@@ -383,4 +539,5 @@ CODE ADAPTED FROM
   </div>
     <script type="module" src="/src/main.js"></script>
   </body>
+
 </html>  
