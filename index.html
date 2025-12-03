@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <title>AI Translator</title>
   <style>
+
+
+/*
+
+ATTRIBUTION: Root Variable Changing code start sample written by Microsoft Copilot AI
+ATTRIBUTION: Root Variable Changing code modified by Nicholas Sinclair to include title, and for implementation in application. 
+:root {
+  --base-font: 16px;   
+  --scale-factor: 1.2em; 
+}
+
+*/
     :root {
       --font-size: 14px ;
       --font-size-title: 30px ;
@@ -18,6 +30,10 @@
       padding: 0;
       font-family: Arial, sans-serif;
     }
+
+
+
+
 
     .grid-container {
       display: grid;
@@ -297,16 +313,36 @@ audio {
               </select>              
         </div>
         <p id="PromptStatus" class="labelText"> </p>
+
+<!-- 
+
+ATTRIBUTION: DROPDOWN CODE SAMPLE WRITTEN BY MICROSOFT COPILOT AI
+ATTRIBTUION: ADAPTED BY NICHOLAS SINCLAIR FOR IMPLEMENTATION. 
+  <select id="myDropdown">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+  </select>        
+
+-->
+
         <div class="optionsMenu">
           <button class="optionBtn" id="buttonOption1"></button>
           <button class="optionBtn" id="buttonOption2"></button>
           <button class="optionBtn" id="buttonOption3"></button>
         </div>
+
+
         <div id="recordButtons">
         <button id="recordBtn">Record 🔴</button>
         <button id="stopBtn"> Transcribe ⬛</button>    
         </div>
         <div id="audioComponent">
+
+<!--
+CODE ADAPTED FROM
+<audio id="audioPlayer" controls></audio>         
+
+-->
           <audio id="audioPlayer" controls></audio>
           <select class="dropdownAccessible" id="dropDownSpeed">
                 <option value="1" selected>Speed: 1x</option>

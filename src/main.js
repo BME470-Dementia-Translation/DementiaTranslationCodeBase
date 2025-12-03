@@ -7,6 +7,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 
 
+
+//ATTRIBUTION:Cultural context data created by team.
 let reminiscenceContext = 
 `
 Holidays
@@ -144,7 +146,7 @@ History 5: Colonial Empire Decline – Loss of overseas territories led to polit
 History 6: Roman, Moorish, and Celtic Influence – Shaped the early cultural identity of Portugal.
 `
 
-
+//ATTRIBUTION: Category selection JSON created by team.
 let jsonData = 
 
 {
@@ -794,14 +796,7 @@ let jsonData =
 
 let isInPathway = false;
 
-
-//import {jsonData} from './public/combined_conversations.json'
-//const jsonData = require('./public/combined_conversations.json'); 
-// console.log(jsonData); // Undo this to print the whole data file
-
-// Doing the Cosine Similarity All the math in it 
-
-// turning ['They are stealing my money'] into ['they', 'are', 'stealing', 'my', 'money']
+//ATTRIBUTION: WRITTEN BY Bethelem Charles: tokenize text, buildVocabulary, createFrequencyVector, dotProduct, magnitude, cosineSimilarity, selectCategoryAndPathway functions.
 function tokenize(text) {
     return text.toLowerCase().match(/\b\w+\b/g) || [];
 }
@@ -924,6 +919,8 @@ function selectCategoryAndPathway(userInput) {
   }
 
 
+
+//ATTRIBUTION: Written by Nicholas Sinclair: displayCategory
 let categoryName = ""
 let subcategoryName = ""
 
@@ -936,9 +933,8 @@ function displayCategory(){
 let systemDescription = `
 You are an emotionally intelligent conversational AI assistant that facilitates safe, natural dialogue with patients (patients with dementia living in a dementia care unit), while providing caregivers with structured insights. You function as both: (1) a supportive conversational partner for the patient, and (2) an analytical guide for caregivers who monitor or intervene when needed. Your goal is to maintain emotional safety, linguistic accuracy, and structured guidance. You cannot see the patient or touch the patient, so do not use phrases such as ‘I like to see you smile’. You cannot promise to do anything to the patient (e.g. agree to let them leave, or agree to dim lights) - in these cases, you must tell the patient that you can let the caregiver know if they want. You must always speak in a formal, respectable tone. 
 
-
 `
-
+// ATTRIBUTION: Written by Nicholas Sinclair: JSONResponseOptionSchema JSON schema, 
 async function generateResponseBasedOnInput(){
   let userInput = interactionMessages[interactionMessages.length - 1]["content"]
   if (!isInPathway){
@@ -1017,6 +1013,7 @@ async function generateResponseBasedOnInput(){
     return modelOutput;
 }
 
+// ATTRIBUTION: Written by Nicholas Sinclair: emptyOptionsSchema JSON Schema,
 const emptyOptionsSchema = {
     "option_1":"Waiting for patient message...",
     "option_2":"Waiting for patient message...",
@@ -1024,7 +1021,7 @@ const emptyOptionsSchema = {
 }
 
 
-
+// ATTRIBUTION: Written by Nicholas Sinclair:  generateResponseBasedOnInput functions.
 let JSONResponseOptionSchema = 
 {
     "title": "JSONResponseOptionSchema",
@@ -1051,6 +1048,43 @@ let JSONResponseOptionSchema =
 let chatbotIntegratingResponsePrompt;
 let interactionMessages;
 resetSystemCategory();
+
+/*ATTRIBUTION: generateResponseOptionsModified() API call written by Microsoft in Azure AI Foundry Documentation, primary code snippet below. 
+ATTRIBUTION: generateResponseOptionsModified() code modified by Nicholas Sinclair for specific JSON schema, and deployed model resource. 
+/*
+SOURCE: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/use-structured-outputs?view=foundry-classic&pivots=programming-language-javascript
+
+var messages = [
+    { role: "system", content: `
+        Extract structured information from GitHub issues opened in our project.
+
+            Provide
+            - The title of the issue
+            - A 1-2 sentence description of the project
+            - The type of issue (Bug, Feature, Documentation, Regression)
+            - The operating system the issue was reported on
+            - Whether the issue is a duplicate of another issue`
+    },
+    { role: "user", content: issueBody },
+];
+
+var response = await client.path("/chat/completions").post({
+    body: {
+        model: "gpt-4o",
+        messages: messages,
+        response_format: {
+            type: "json_schema",
+            json_schema: {
+                name: "github_issue",
+                schema: gitHubIssueSchema,
+                description: "Describes a GitHub issue",
+                strict: true,
+            },
+        }
+    }
+});
+*/
+
 
 async function generateResponseOptionsModified() {
 
@@ -1086,7 +1120,7 @@ async function generateResponseOptionsModified() {
 
 
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: generateSingleLineTextResponse(messages), adapted from generateResponseOptionsModified().
 async function generateSingleLineTextResponse(messages) {
   const client = new ModelClient("https://test251106-resource.cognitiveservices.azure.com/openai/deployments/gpt-4o", new AzureKeyCredential("F9Wvm1vgo73umRYk5EpcucYUW261beS7unYGulsTUk0Jdtps5ewtJQQJ99BKACHYHv6XJ3w3AAAAACOG8OfS"));
   var response = await client.path("/chat/completions?api-version=2025-01-01-preview").post({
@@ -1118,12 +1152,22 @@ displayResponseOptions(emptyOptionsSchema)
 
 
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: displayResponseOptions(options)
 function displayResponseOptions(options){
   document.getElementById("buttonOption1").textContent = options["option_1"]
   document.getElementById("buttonOption2").textContent = options["option_2"]
   document.getElementById("buttonOption3").textContent = options["option_3"]
 }
+
+//ATTRIBUTION: Written by Microsoft Copilot AI: initial dropdown code below
+/*
+    dropdown.addEventListener('change', function() {
+      const selectedValue = dropdown.value;
+      output.textContent = `You selected: ${selectedValue}`;
+    });
+
+*/ 
+//ATTRIBUTION: Modified by Nicholas Sinclair: Dropdown change listeners for language input, language output, speed, font size scale change. 
 
 const dropdownLangIn = document.getElementById('dropDownLangIn');
 let langIn = dropdownLangIn.value;
@@ -1158,9 +1202,8 @@ fontSizeChange.addEventListener('change', function() {
 });
 
 
-//displayResponseOptions(emptyOptionsSchema)
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: BUTTON event listeners. 
 document.getElementById("buttonOption1").addEventListener('click', async () => {
     sendMessage(document.getElementById("buttonOption1").textContent)
 })
@@ -1174,7 +1217,7 @@ document.getElementById("buttonOption3").addEventListener('click', async () => {
 })
 
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: addMessageToModelContext(applicationRole, inputMessage).
 function addMessageToModelContext(applicationRole, inputMessage) {
   let role;
   if (applicationRole == "user"){
@@ -1187,7 +1230,7 @@ function addMessageToModelContext(applicationRole, inputMessage) {
 
 }
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: setLoadingResponse(isloadingResponse)
 function setLoadingResponse(isloadingResponse){
   if (isloadingResponse){
     document.getElementById("PromptStatus").innerText = "Loading AI suggestions..."
@@ -1197,6 +1240,7 @@ function setLoadingResponse(isloadingResponse){
 }
 
 
+//ATTRIBUTION: Written by Microsoft Copilot AI, unmodified: encodeWAV(samples, sampleRate)
 
 // Utility: Convert Float32Array audio buffer to WAV format
 function encodeWAV(samples, sampleRate) {
@@ -1235,6 +1279,10 @@ function encodeWAV(samples, sampleRate) {
 }
 
 
+
+////ATTRIBUTION: Written by Microsoft Copilot AI: audio streaming and data collection 
+//ATTRIBUTION: modified by Nicholas Sinclair to include button property changes
+
   let stream;
   let audioContext;
   let source;
@@ -1266,6 +1314,7 @@ document.getElementById('recordBtn').addEventListener('click', async () => {
 })
 
 
+////ATTRIBUTION: Written by Microsoft Copilot AI: audio streaming stop and wav object creation (blob) (modified by Nicholas Sinclair to include processInputAudio and button property changes)
 document.getElementById('stopBtn').addEventListener('click', async () => {
   if(isRecording){
 
@@ -1289,16 +1338,6 @@ document.getElementById('stopBtn').addEventListener('click', async () => {
     const wavBuffer = encodeWAV(flatData, audioContext.sampleRate);
     const blob = new Blob([wavBuffer], { type: 'audio/wav' });
 
-    // // Download file
-    // const url = URL.createObjectURL(blob);
-    // const a = document.createElement('a');
-    // a.href = url;
-    // a.download = 'recording.wav';
-    // a.click();
-    // URL.revokeObjectURL(url);
-
-    // alert("Recording saved as WAV!");
-
     //transcribeAudio(blob)
     processInputAudio(blob)
 }
@@ -1306,7 +1345,8 @@ document.getElementById('stopBtn').addEventListener('click', async () => {
 })
 
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: processInputAudio(wavAudio)
+//Main application loop on audio inout, awaits asynchronous calls from transcription, translation APIs, sends messages in the chat window, and generates a response using the LLM.  
 async function processInputAudio(wavAudio){
     console.log("App thread entered")
     let transcriptionResult = await(transcribeBlob(wavAudio))
@@ -1325,7 +1365,7 @@ async function processInputAudio(wavAudio){
     
 }
 
-
+//ATTRIBUTION: Written by Nicholas Sinclair: tryLLMResponseGeneration(). 
 async function tryLLMResponseGeneration(){
     let result = emptyOptionsSchema;
     try {
@@ -1342,15 +1382,12 @@ async function tryLLMResponseGeneration(){
 
 
 
-
+//ATTRIBUTION: Written by Microsoft Copilot AI: transcribeBlob() and initial variables. 
+//ATTRIBUTION: Modified by Nicholas Sinclair with specific API information.
 /////TRANSCRIPTION API CALL
-
 const subscriptionKey = "Dtq2HxC2SwCIv77EmZhko7dQNSTXOXd83nPEmu2LQ2yAZ5Jk4xMMJQQJ99BKACYeBjFXJ3w3AAAYACOGmoAX";
 const serviceRegion = "eastus"; // e.g., "eastus"
 const apiVersion = "2025-10-15";
-
-// Assume you already have a Blob of WAV audio, e.g. from MediaRecorder
-// let wavBlob = new Blob([...], { type: "audio/wav" });
 
 async function transcribeBlob(wavBlob) {
   console.log("Input Language", langIn)
@@ -1379,12 +1416,14 @@ async function transcribeBlob(wavBlob) {
   return result;
 }
 
+//ATTRIBUTION: Written by Microsoft Copilot AI: initial variables, uuidv4(), translateText(). 
+//ATTRIBUTION: Modified by Nicholas Sinclair to include LangFrom and LangTo.
 /////TRANSLATION API CALL
     const key = "EitWfLKglsjgOUAeqGJ50UukAfizdyZqzrqREylKwK1kJPGc6lMYJQQJ99BKACYeBjFXJ3w3AAAbACOGeTs1";
     const endpoint = "https://api.cognitive.microsofttranslator.com";
     const resourceLocation = "eastus"; // e.g. "eastus"
 
-    // Simple UUID generator for client trace ID
+    //UUID generator for client trace ID
     function uuidv4() {
       return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -1416,8 +1455,9 @@ async function transcribeBlob(wavBlob) {
       return result;
     }
 
-
-////MICROSOFT TEXT TO SPEECH
+//ATTRIBUTION: Written by Microsoft Copilot AI: initial variables, textToSpeech(text), playAudioBlob(blob). 
+//ATTRIBUTION: Modified by Nicholas Sinclair to include changeTTSVoice(langIn), dynamic voice, speed, and language changing in SSML.
+////TEXT TO SPEECH API
    const subscriptionKeyTTS = "Dtq2HxC2SwCIv77EmZhko7dQNSTXOXd83nPEmu2LQ2yAZ5Jk4xMMJQQJ99BKACYeBjFXJ3w3AAAYACOGmoAX";
     const serviceRegionTTS = "eastus"; // e.g. "eastus"
 
@@ -1429,22 +1469,14 @@ async function transcribeBlob(wavBlob) {
 
       const url = `https://${serviceRegionTTS}.tts.speech.microsoft.com/cognitiveservices/v1`;
 
-
+      //SSML body
       let ssmlBody = `
         <speak version='1.0' xml:lang='${langIn.toLowerCase()}'>
           <voice xml:lang='${langIn.toLowerCase()}' xml:gender='Female' name='${voice}' rate='${speed}'>
             ${text}
           </voice>
         </speak>`
-      // Build SSML request body
-      const ssml = ssmlBody;
-
-      // const ssml = `
-      //   <speak version='1.0' xml:lang='pt-br'>
-      //     <voice xml:lang='pt-br' xml:gender='Female' name='pt-BR-FranciscaNeural' rate='0.6'>
-      //       ${text}
-      //     </voice>
-      //   </speak>`;        
+      const ssml = ssmlBody;  
 
       const response = await fetch(url, {
         method: "POST",
@@ -1472,11 +1504,8 @@ async function transcribeBlob(wavBlob) {
     }
 
 
-//CHAT WINDOW UI CHANGING CODE
-
-const exitText = "I will leave."
-
-
+//ATTRIBUTION: written by Nicholas Sinclair: sendStopMessage()
+///CHAT WINDOW UI CHANGING CODE
 async function sendStopMessage(){
   let systemPrompt = `
     ${systemDescription}
@@ -1494,6 +1523,7 @@ document.getElementById("stopConversation").addEventListener('click', () => {
 })
 
 
+//ATTRIBUTION: written by Nicholas Sinclair: resetSystemCategory()
 function resetSystemCategory(){
   chatbotIntegratingResponsePrompt = systemDescription;
   interactionMessages = [{role:"system", content:chatbotIntegratingResponsePrompt}]
@@ -1502,12 +1532,14 @@ function resetSystemCategory(){
   subcategoryName = ""
 }
 
+//ATTRIBUTION: written by Nicholas Sinclair: resetConversation event listener
 document.getElementById("resetConversation").addEventListener('click', () => {
   resetSystemCategory()
   displayCategory()
 })
 
-
+//ATTRIBUTION: written by Nicholas Sinclair: sendMessage(inputMessage)
+//This function runs given an input message. The function translates the message, displays it in the frontend, plays the audio context, and adds the message to the model context. 
 async function sendMessage(inputMessage){
   //1. Set the text
   let text = inputMessage
@@ -1525,6 +1557,8 @@ async function sendMessage(inputMessage){
   addMessageToModelContext("caregiver", text);
 }
 
+//ATTRIBUTION: written by Nicholas Sinclair: changeTTSVoice(langOutput)
+//Changes text to speech voice based on the output language selected. 
 function changeTTSVoice(langOutput){
   if (langOutput == "en-CA"){
     return "en-CA-ClaraNeural"
@@ -1535,7 +1569,8 @@ function changeTTSVoice(langOutput){
   }
 }
 
-
+//ATTRIBUTION: written by Nicholas Sinclair: sendCaregiverInputMessage()
+//Sends caregiver message from the messageInput textbox on the frontend. 
 function sendCaregiverInputMessage(){
   //1. Get the text
   let text = document.getElementById("messageInput").value;
@@ -1544,7 +1579,8 @@ function sendCaregiverInputMessage(){
   console.log("send button clicked");  
 }
 
-
+//ATTRIBUTION: written by Nicholas Sinclair: sendButton event listener. 
+// Runs the sendCaregiverInput Message function for manual chat message output.
 document.getElementById('sendButton').addEventListener('click', () => {
   sendCaregiverInputMessage()
 })
@@ -1559,7 +1595,7 @@ document.addEventListener('keydown', function(event) {
   }
 })
 
-
+//ATTRIBUTION: written by Nicholas Sinclair: messageInput event listeners. 
 let caregiverInputFocused = false;
 document.getElementById('messageInput').addEventListener('focusin', () => {
   caregiverInputFocused = true;
@@ -1569,7 +1605,7 @@ document.getElementById('messageInput').addEventListener('focusout', () => {
   caregiverInputFocused = false;
 })
 
-
+//ATTRIBUTION: Written by Microsoft Copilot AI: sendUser1(textInput), sendUser2(textInput), scrollToBottom().
     function sendUser1(textInput) {
       let text = textInput
       const msg = document.createElement("div");
@@ -1580,8 +1616,6 @@ document.getElementById('messageInput').addEventListener('focusout', () => {
     }
 
     function sendUser2(textInput) {
-      // const text = document.getElementById("messageInput").value;
-      // if (!text.trim()) return;
       let text = textInput;
       const msg = document.createElement("div");
       msg.className = "message user2";
