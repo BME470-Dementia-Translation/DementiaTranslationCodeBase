@@ -1,1 +1,1 @@
-
+While currently empty, any future external files for the application will be accessed from this folder. 
