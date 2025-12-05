@@ -1088,7 +1088,7 @@ var response = await client.path("/chat/completions").post({
 
 async function generateResponseOptionsModified() {
 
-  const client = new ModelClient("https://test251106-resource.cognitiveservices.azure.com/openai/deployments/gpt-4o", new AzureKeyCredential("F9Wvm1vgo73umRYk5EpcucYUW261beS7unYGulsTUk0Jdtps5ewtJQQJ99BKACHYHv6XJ3w3AAAAACOG8OfS"));
+  const client = new ModelClient("https://test251106-resource.cognitiveservices.azure.com/openai/deployments/gpt-4o", new AzureKeyCredential("<YOUR API KEY HERE>"));
   var response = await client.path("/chat/completions?api-version=2025-01-01-preview").post({
       body: {
           model: "gpt-4o",
@@ -1122,7 +1122,7 @@ async function generateResponseOptionsModified() {
 
 //ATTRIBUTION: Written by Nicholas Sinclair: generateSingleLineTextResponse(messages), adapted from generateResponseOptionsModified().
 async function generateSingleLineTextResponse(messages) {
-  const client = new ModelClient("https://test251106-resource.cognitiveservices.azure.com/openai/deployments/gpt-4o", new AzureKeyCredential("F9Wvm1vgo73umRYk5EpcucYUW261beS7unYGulsTUk0Jdtps5ewtJQQJ99BKACHYHv6XJ3w3AAAAACOG8OfS"));
+  const client = new ModelClient("https://test251106-resource.cognitiveservices.azure.com/openai/deployments/gpt-4o", new AzureKeyCredential("<YOUR API KEY HERE>"));
   var response = await client.path("/chat/completions?api-version=2025-01-01-preview").post({
       body: {
           model: "gpt-4o",
@@ -1385,7 +1385,7 @@ async function tryLLMResponseGeneration(){
 //ATTRIBUTION: Written by Microsoft Copilot AI: transcribeBlob() and initial variables. 
 //ATTRIBUTION: Modified by Nicholas Sinclair with specific API information.
 /////TRANSCRIPTION API CALL
-const subscriptionKey = "Dtq2HxC2SwCIv77EmZhko7dQNSTXOXd83nPEmu2LQ2yAZ5Jk4xMMJQQJ99BKACYeBjFXJ3w3AAAYACOGmoAX";
+const subscriptionKey = "<YOUR API KEY HERE>";
 const serviceRegion = "eastus"; // e.g., "eastus"
 const apiVersion = "2025-10-15";
 
@@ -1419,7 +1419,7 @@ async function transcribeBlob(wavBlob) {
 //ATTRIBUTION: Written by Microsoft Copilot AI: initial variables, uuidv4(), translateText(). 
 //ATTRIBUTION: Modified by Nicholas Sinclair to include LangFrom and LangTo.
 /////TRANSLATION API CALL
-    const key = "EitWfLKglsjgOUAeqGJ50UukAfizdyZqzrqREylKwK1kJPGc6lMYJQQJ99BKACYeBjFXJ3w3AAAbACOGeTs1";
+    const key = "<YOUR API KEY HERE>";
     const endpoint = "https://api.cognitive.microsofttranslator.com";
     const resourceLocation = "eastus"; // e.g. "eastus"
 
@@ -1458,7 +1458,7 @@ async function transcribeBlob(wavBlob) {
 //ATTRIBUTION: Written by Microsoft Copilot AI: initial variables, textToSpeech(text), playAudioBlob(blob). 
 //ATTRIBUTION: Modified by Nicholas Sinclair to include changeTTSVoice(langIn), dynamic voice, speed, and language changing in SSML.
 ////TEXT TO SPEECH API
-   const subscriptionKeyTTS = "Dtq2HxC2SwCIv77EmZhko7dQNSTXOXd83nPEmu2LQ2yAZ5Jk4xMMJQQJ99BKACYeBjFXJ3w3AAAYACOGmoAX";
+   const subscriptionKeyTTS = "<YOUR API KEY HERE>";
     const serviceRegionTTS = "eastus"; // e.g. "eastus"
 
     // Function to call Azure TTS and return audio as a Blob
