@@ -11,6 +11,9 @@ Installation instructions (assuming Node.js is downloaded):
 4. Run "npx vite" to run the application
 (Optional)
 5. Run "npx vite build" to build the application for production. The current configuration is intended to be built as a static web application.
+6. Note that once you build the app, change the code in index.html that references the built JavaScript source code file to 
+  <script type="module" crossorigin src="./assets/<filename.js>"></script>
+
 
 The build tool used was vite. The system is designed to be hosted as a static website. 
 
@@ -26,5 +29,6 @@ To search through the authoring in each section, search for the word "ATTRIBUTIO
 
 Project Team Members: 
 Ashni Balakrishnan, Bethelem Charles, Nicholas Sinclair, Ria Borger  
+
 
 
